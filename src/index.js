@@ -72,11 +72,11 @@ const Menu = () => {
     return (
         <main className="menu">
             <h2>Menu</h2>
-            <Pizza name='Pizza Salamino' ingredients='Tomato, mozarella
-             and pepperoni' photoName='pizzas/salamino.jpg' price={52} />
-
-            <Pizza name='Pizza Funghi' ingredients='Tomato, mushrooms'
-                photoName='pizzas/funghi.jpg' price={50} />
+            <ul className="pizzas">
+                {pizzaData.map((pizza) =>
+                    <Pizza pizzaObj={pizza} key={pizza.name} />
+                )}
+            </ul>
         </main>
     )
 }
@@ -85,14 +85,14 @@ const Pizza = (props) => {
     console.log(props);
 
     return (
-        <div className="pizza">
-            <img src={props.photoName} alt={props.name} />
+        <li className="pizza">
+            <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
             <div>
-                <h2>{props.name}</h2>
-                <p>{props.ingredients}</p>
-                <span>R {props.price + 3}</span>
+                <h2>{props.pizzaObj.name}</h2>
+                <p>{props.pizzaObj.ingredients}</p>
+                <span>R {props.pizzaObj.price + 3}</span>
             </div>
-        </div>
+        </li>
     )
 }
 
@@ -109,7 +109,7 @@ const Footer = () => {
 
     return (
         <div>
-            <footer className="footer">{new Date().toLocaleTimeString()}. We're currently open </footer>
+            <footer className="footer">{new Date().toLocaleTimeString()}. Come visit us or order online. </footer>
         </div>
     )
 }
